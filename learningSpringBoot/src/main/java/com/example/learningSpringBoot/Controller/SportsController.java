@@ -3,7 +3,6 @@ package com.example.learningSpringBoot.Controller;
 import com.example.learningSpringBoot.Entity.Sport;
 import com.example.learningSpringBoot.Service.SportService;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
