@@ -1,5 +1,6 @@
 package com.example.learningSpringBoot.Service;
 
+import com.example.learningSpringBoot.Controller.BookController;
 import com.example.learningSpringBoot.Dto.BookDto;
 import com.example.learningSpringBoot.Entity.Book;
 import com.example.learningSpringBoot.Repository.BookRepository;
@@ -10,6 +11,11 @@ import org.springframework.stereotype.Service;
 public class BookService {
 
     BookRepository bookRepository;
+//    BookController bookController;
+//
+//    public BookService(BookController bookController) {
+//        this.bookController = bookController;
+//    }
 
     // setter injection
     @Autowired

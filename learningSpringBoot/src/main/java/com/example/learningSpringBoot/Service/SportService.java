@@ -2,6 +2,8 @@ package com.example.learningSpringBoot.Service;
 
 import com.example.learningSpringBoot.Entity.Sport;
 import com.example.learningSpringBoot.Repository.SportRepository;
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,6 +15,17 @@ public class SportService {
     public SportService(SportRepository sportRepository) {
         this.sportRepository = sportRepository;
     }
+
+    @PostConstruct
+    public void sportDbInit() {
+        System.out.println("Sport Init");
+    }
+
+    @PreDestroy
+    public void sportClearCache() {
+        System.out.println("Sport Clear Cache");
+    }
+
 
     public Sport addSport(Sport sport) {
         return sportRepository.save(sport);

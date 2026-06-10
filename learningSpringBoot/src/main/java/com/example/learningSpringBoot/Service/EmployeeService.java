@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class EmployeeService {
 
-    EmployeeRepository employeeRepository;
+    private final EmployeeRepository employeeRepository;
     // constructor injection
     public EmployeeService(EmployeeRepository employeeRepository) {
         this.employeeRepository = employeeRepository;
