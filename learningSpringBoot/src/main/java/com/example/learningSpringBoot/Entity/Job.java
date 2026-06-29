@@ -16,27 +16,23 @@ public class Job {
     private String maxSalary;
     private String minSalary;
     private String location;
+    private String company;
+    private Integer experience;
     private LocalDateTime createdDate;
 
     public Job() {
 
     }
 
-    public Job(Long id, String title, String description, String maxSalary, String minSalary, String location, LocalDateTime createdDate) {
+    public Job(Long id, String title, String description, String maxSalary, String minSalary, String location, String company, Integer experience, LocalDateTime createdDate) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.maxSalary = maxSalary;
         this.minSalary = minSalary;
         this.location = location;
-        this.createdDate = createdDate;
-    }
-
-    public LocalDateTime getCreatedDate() {
-        return createdDate;
-    }
-
-    public void setCreatedDate(LocalDateTime createdDate) {
+        this.company = company;
+        this.experience = experience;
         this.createdDate = createdDate;
     }
 
@@ -87,4 +83,29 @@ public class Job {
     public void setLocation(String location) {
         this.location = location;
     }
+
+    public String getCompany() {
+        return company;
+    }
+
+    public void setCompany(String company) {
+        this.company = company;
+    }
+
+    public Integer getExperience() {
+        return experience;
+    }
+
+    public void setExperience(Integer experience) {
+        this.experience = experience;
+    }
+
+    public LocalDateTime getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(LocalDateTime createdDate) {
+        this.createdDate = createdDate;
+    }
+
 }

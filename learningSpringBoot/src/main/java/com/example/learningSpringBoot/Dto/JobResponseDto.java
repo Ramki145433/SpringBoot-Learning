@@ -5,6 +5,8 @@ public class JobResponseDto {
     private String title;
     private String description;
     private String location;
+    private String company;
+    private Integer experience;
 
     public Long getId() {
         return id;
@@ -36,5 +38,21 @@ public class JobResponseDto {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public String getCompany() {
+        return company;
+    }
+
+    public void setCompany(String company) {
+        this.company = company;
+    }
+
+    public Integer getExperience() {
+        return experience;
+    }
+
+    public void setExperience(Integer experience) {
+        this.experience = experience;
     }
 }

@@ -29,6 +29,8 @@ public class JobService {
         job.setMinSalary(dto.getMinSalary());
         job.setMaxSalary(dto.getMaxSalary());
         job.setLocation(dto.getLocation());
+        job.setCompany(dto.getCompany());
+        job.setExperience(dto.getExperience());
         job.setCreatedDate(LocalDateTime.now());
 
         Job saved = jobRepository.save(job);
@@ -39,22 +41,97 @@ public class JobService {
         response.setTitle(saved.getTitle());
         response.setDescription(saved.getDescription());
         response.setLocation(saved.getLocation());
+        response.setCompany(saved.getCompany());
+        response.setExperience(saved.getExperience());
 
         return response;
     }
 
     // GET ALL
-    public List<Job> findAllJobs() {
-        return jobRepository.findAll();
+    public List<JobResponseDto> searchJobs(
+            String location,
+            String company,
+            Integer experience) {
+
+        List<Job> jobs;
+
+        if (location == null &&
+                company == null &&
+                experience == null) {
+
+            jobs = jobRepository.findAll();
+
+        } else if (location != null &&
+                company == null &&
+                experience == null) {
+
+            jobs = jobRepository.findByLocation(location);
+
+        } else if (location == null &&
+                company != null &&
+                experience == null) {
+
+            jobs = jobRepository.findByCompany(company);
+
+        } else if (location == null &&
+                company == null &&
+                experience != null) {
+
+            jobs = jobRepository.findByExperience(experience);
+
+        } else if (location != null &&
+                company != null &&
+                experience == null) {
+
+            jobs = jobRepository.findByLocationAndCompany(
+                    location,
+                    company);
+
+        } else if (location != null &&
+                company == null &&
+                experience != null) {
+
+            jobs = jobRepository.findByLocationAndExperience(
+                    location,
+                    experience);
+
+        } else if (location == null &&
+                company != null &&
+                experience != null) {
+
+            jobs = jobRepository.findByCompanyAndExperience(
+                    company,
+                    experience);
+
+        } else {
+            jobs = jobRepository.findByLocationAndCompanyAndExperience(
+                            location,
+                            company,
+                            experience);
+        }
+
+        return jobs.stream().map(job -> {
+
+            JobResponseDto dto = new JobResponseDto();
+
+            dto.setId(job.getId());
+            dto.setTitle(job.getTitle());
+            dto.setLocation(job.getLocation());
+            dto.setExperience(job.getExperience());
+            dto.setCompany(job.getCompany());
+            dto.setDescription(job.getDescription());
+
+            return dto;
+
+        }).toList();
     }
 
     // GET BY ID
-    public Job findById(Long id) {
-
-        Optional<Job> optional = jobRepository.findById(id);
-
-        return optional.orElse(null);
+    // In your JobService interface/implementation:
+    public Optional<Job> findById(Long id) {
+        return jobRepository.findById(id); // Spring Data JPA repositories return Optional by default
     }
+
 
     // DELETE
     public boolean deleteById(Long id) {
